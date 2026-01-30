@@ -1,0 +1,13 @@
+on: [ push ]
+
+jobs:
+  hello_world_job:
+  name: Um novo job
+  runs-on: ubuntu-lasted
+  steps:
+    - uses: actions/checkout@v4
+    - name: Hello World
+      id: hello-world
+      uses: LuizAntonioConstante/modulos-git@v1
+      with:
+        my-input: world
