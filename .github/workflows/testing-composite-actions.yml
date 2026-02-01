@@ -3,7 +3,7 @@ on: [ push ]
 jobs:
   hello_world_job:
     name: Um novo job
-    runs-on: ubuntu-lastet
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Hello World
