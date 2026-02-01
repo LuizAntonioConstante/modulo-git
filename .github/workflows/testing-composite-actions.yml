@@ -8,6 +8,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Hello World
         id: hello-world
-        uses: LuizAntonioConstante/modulos-git@v1
+        uses: LuizAntonioConstante/modulo-git@v1
         with:
           my-input: world
