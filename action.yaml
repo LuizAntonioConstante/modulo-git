@@ -5,20 +5,12 @@ inputs:
   my-input:
     description: 'Input vindo do workflow'
     required: true
-    default: ''
 
 outputs:
   my-output:
-    value: ${{ steps.hello-world-msg.outputs.output }}
+    description: 'Meu output'
   
 runs:
-  using: 'composite'
-  steps:
-    - name: Hello ${{ inputs.my-input }}
-      run: echo "Hello ${{ inputs.my-input }}!"
-      shell: bash
-
-    - name: Send Output
-      id: hello-world-msg
-      run: echo "output='Hello ${{ inputs.my.input }})" $GITHUB_OUTPUT
-      shell: bash
+  using: 'node20'
+  main: 'index.js'
+  
