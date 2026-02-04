@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Hello World
         id: hello-world
-        uses: LuizAntonioConstante/modulo-git@main
+        uses: LuizAntonioConstante/modulo-git@javascript
         with:
           my-input: world
 
@@ -16,4 +16,4 @@ jobs:
         run: echo $OUTPUT_FROM_HELLO
         shell: bash
         env:
-          OUTPUT_FROM_HELLO: ${{ steps.hello-world.outputs.my-outputs }}
+          OUTPUT_FROM_HELLO: ${{ steps.hello-world.outputs.my-output }}
