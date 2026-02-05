@@ -1,0 +1,29 @@
+name: Deploy Production
+
+on: 
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - if: ${{ github.ref == 'refs/read/main' }}
+      - name: Deploy Production Server
+        run: echo "Deploying to production server..."
+        shell: bash
+      - if: ${{ github.ref == 'refs/read/develop' }}
+      - name: Deploy Production Server
+        run: echo "Deploying to develop server..."
+        shell: bash
+
+    post-deploy:
+      runs-on: ubuntu-latest
+      needs: deploy
+      if: ${{ success }}
+      steps:
+        - uses: action/checkout@v4
+        - name: Cleaning Server Atifacts Cache
+          run: echo "cleaning artifacts..."
+        shell: bash
