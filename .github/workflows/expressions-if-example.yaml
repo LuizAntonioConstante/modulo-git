@@ -9,13 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - if: ${{ github.ref == 'refs/heads/main' }}
-      - name: Deploy Production Server
+        id: deploy-prod
+        name: Deploy Production Server
         run: echo "Deploying to production server..."
         shell: bash
+        
       - if: ${{ github.ref == 'refs/read/develop' }}
-      - name: Deploy Production Server
+        id: deploy-develop
+        name: Deploy Production Server
         run: echo "Deploying to develop server..."
+        shell: bash
+
+      - if: ${{ github.ref == 'refs/head/main' && steps.deploy-prod.conclusion == 'success' }}
+        name: Status Deploy Prod
+        run: echo "Deployed to production Server!"
+        shell: bash
+
+
+      - if: ${{ github.ref == 'refs/head/develop' && steps.deploy-develop.conclusion == 'success' }}
+        name: Status Deploy develop
+        run: echo "Deployed to develop Server!"
         shell: bash
 
     post-deploy:
@@ -26,4 +41,4 @@ jobs:
         - uses: action/checkout@v4
         - name: Cleaning Server Atifacts Cache
           run: echo "cleaning artifacts..."
-        shell: bash
+          shell: bash
